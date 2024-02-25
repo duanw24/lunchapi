@@ -9,13 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 
+@CrossOrigin(
+        allowCredentials = "true",
+        origins = {"*"},
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET,RequestMethod.POST}
+)
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {

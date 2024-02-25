@@ -1828,3 +1828,50 @@ java.lang.IllegalStateException: Not a JSON Object: ["{\"_id\": {\"$oid\": \"65d
 2024-02-25T15:53:51.007-05:00  INFO 64836 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-02-25T15:53:51.007-05:00  INFO 64836 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-02-25T15:53:51.008-05:00  INFO 64836 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-02-25T18:49:42.934-05:00  INFO 66534 --- [main] c.w.l.LunchlineBackendApplication        : Starting LunchlineBackendApplication using Java 20.0.2 with PID 66534 (/Users/wd/IdeaProjects/lunchline-backend/build/classes/java/main started by wd in /Users/wd/IdeaProjects/lunchline-backend)
+2024-02-25T18:49:42.935-05:00  INFO 66534 --- [main] c.w.l.LunchlineBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-02-25T18:49:43.380-05:00  WARN 66534 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-02-25T18:49:43.384-05:00  INFO 66534 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-02-25T18:49:43.393-05:00 ERROR 66534 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.4.jar:6.1.4]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar:3.2.3]
+	at com.wduan.lunchlinebackend.LunchlineBackendApplication.main(LunchlineBackendApplication.java:32) ~[main/:na]
+Caused by: java.lang.IllegalStateException: Unable to create key store: Could not load store from '/etc/letsencrypt/live/lunchapp.wduan.dev/domain.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:94) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.<init>(JksSslStoreBundle.java:57) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.server.WebServerSslBundle.createJksKeyStoreBundle(WebServerSslBundle.java:90) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.server.WebServerSslBundle.createKeyStore(WebServerSslBundle.java:189) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:179) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:174) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:225) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.customizeSsl(TomcatServletWebServerFactory.java:373) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.customizeConnector(TomcatServletWebServerFactory.java:349) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:210) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.2.3.jar:3.2.3]
+	... 8 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load store from '/etc/letsencrypt/live/lunchapp.wduan.dev/domain.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:123) ~[spring-boot-3.2.3.jar:3.2.3]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:89) ~[spring-boot-3.2.3.jar:3.2.3]
+	... 19 common frames omitted
+Caused by: java.io.FileNotFoundException: /etc/letsencrypt/live/lunchapp.wduan.dev/domain.p12 (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method) ~[na:na]
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219) ~[na:na]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158) ~[na:na]
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112) ~[na:na]
+	at java.base/sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:84) ~[na:na]
+	at java.base/sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:180) ~[na:na]
+	at java.base/java.net.URL.openStream(URL.java:1317) ~[na:na]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:118) ~[spring-boot-3.2.3.jar:3.2.3]
+	... 20 common frames omitted
+

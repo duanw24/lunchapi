@@ -22,6 +22,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@CrossOrigin(
+        allowCredentials = "true",
+        origins = {"*"},
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET,RequestMethod.POST}
+)
 @RestController
 @RequestMapping("/api/v1/order")
 public class OrderController {
