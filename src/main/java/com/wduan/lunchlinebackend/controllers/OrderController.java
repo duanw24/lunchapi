@@ -98,7 +98,7 @@ public class OrderController {
             }
             long timestamp=System.currentTimeMillis();
             Order order = new Order((dbHelper.getD0().countDocuments()+1)*timestamp,timestamp,name, email, studentID, lunchPeriod, breadType, subSize, toasted, protein, toppings, sauces);
-
+            LogController.log("Order id= " + order.getId() + " submitted!");
             OrderQueue.addOrder(order);
             emailHelper.getInstance().sendConfirmation(order.getEmail(),order);
             //System.out.println(order);
