@@ -2,18 +2,17 @@ package com.wduan.lunchlinebackend;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"http://localhost","https://lunchapp.wduan.dev"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev","http://localhost:63342"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
@@ -23,6 +22,13 @@ public class LogController {
 
     @Getter
     private static final Logger logger = LoggerFactory.getLogger(LogController.class);
+
+    @SneakyThrows
+    public static void init() {
+        BufferedWriter bfw = new BufferedWriter(new FileWriter("logs/log.log",false));
+        bfw.write("");
+        logger.info("LogController initialized");
+    }
 
     public static void clearLog() {}
 

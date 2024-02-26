@@ -24,7 +24,7 @@ import java.util.Objects;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"http://localhost","https://lunchapp.wduan.dev"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev","http://localhost:63342"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
@@ -98,7 +98,7 @@ public class OrderController {
             }
             long timestamp=System.currentTimeMillis();
             Order order = new Order((dbHelper.getD0().countDocuments()+1)*timestamp,timestamp,name, email, studentID, lunchPeriod, breadType, subSize, toasted, protein, toppings, sauces);
-            LogController.log("Order id= " + order.getId() + " submitted!");
+            LogController.log("Order id= " + order.getId() +":"+order+ " submitted!");
             OrderQueue.addOrder(order);
             emailHelper.getInstance().sendConfirmation(order.getEmail(),order);
             //System.out.println(order);
