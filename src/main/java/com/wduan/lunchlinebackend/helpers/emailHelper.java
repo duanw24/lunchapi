@@ -1,8 +1,10 @@
 package com.wduan.lunchlinebackend.helpers;
 
+import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.util.Order;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +18,8 @@ import java.util.Properties;
 @Service
 public class emailHelper {
 
+    @Getter
     private static emailHelper instance = new emailHelper();
-
-    public static emailHelper getInstance() {
-        return instance;
-    }
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -57,7 +56,6 @@ public class emailHelper {
         message.setSubject(subject);
 
         message.setContent(content, "text/html; charset=utf-8");
-
         mailSender.send(message);
     }
 
@@ -332,6 +330,7 @@ public class emailHelper {
                 "</html>";
 
 
+        LogController.log("Sending confirmation email to: " + toEmail + " for order: " + order.getId());
         sendEmail(toEmail,"Confirm Your Order", html);
     }
 
