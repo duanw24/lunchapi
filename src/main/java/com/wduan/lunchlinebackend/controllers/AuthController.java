@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"*"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )

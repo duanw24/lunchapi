@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"*"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )

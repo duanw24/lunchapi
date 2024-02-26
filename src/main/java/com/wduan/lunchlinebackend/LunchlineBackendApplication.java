@@ -22,7 +22,7 @@ import java.io.File;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"*"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev","lunchapi.wduan.dev"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )

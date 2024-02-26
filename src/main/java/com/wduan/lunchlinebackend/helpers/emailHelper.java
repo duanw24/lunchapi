@@ -255,7 +255,7 @@ public class emailHelper {
                 "                                    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n" +
                 "                                        <tr>\n" +
                 "                                            <td align=\"center\" bgcolor=\"#1a82e2\" style=\"border-radius: 6px;\">\n" +
-                "                                                <a href=\"https://lunchapp.wduan.dev/api/v1/auth?key="+order.getId()+"\" target=\"_blank\" style=\"display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;\">Confirm Order</a>\n" +
+                "                                                <a href=\"https://lunchapi.wduan.dev/api/v1/auth?key="+order.getId()+"\" target=\"_blank\" style=\"display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;\">Confirm Order</a>\n" +
                 "                                            </td>\n" +
                 "                                        </tr>\n" +
                 "                                    </table>\n" +
@@ -270,7 +270,7 @@ public class emailHelper {
                 "                <tr>\n" +
                 "                    <td align=\"left\" bgcolor=\"#ffffff\" style=\"padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n" +
                 "                        <p style=\"margin: 0;\">If that doesn't work, copy and paste the following link in your browser:</p>\n" +
-                "                        <p style=\"margin: 0;\"><a href=\""+"https://lunchapp.wduan.dev/api/v1/auth?key="+order.getId()+"\" target=\"_blank\">"+"https://lunchapp.wduan.dev/api/v1/auth?key="+order.getId()+"</a></p>\n" +
+                "                        <p style=\"margin: 0;\"><a href=\""+"https://lunchapi.wduan.dev/api/v1/auth?key="+order.getId()+"\" target=\"_blank\">"+"https://lunchapi.wduan.dev/api/v1/auth?key="+order.getId()+"</a></p>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
                 "                <!-- end copy -->\n" +

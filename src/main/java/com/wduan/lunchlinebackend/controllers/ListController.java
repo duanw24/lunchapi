@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"*"},
+        origins = {"http://localhost","https://lunchapp.wduan.dev"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
