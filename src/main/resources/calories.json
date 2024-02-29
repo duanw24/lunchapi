@@ -1,0 +1,32 @@
+{
+  "White":200,
+  "Wheat":200,
+
+  "Ham":160,
+  "Turkey":120,
+  "Salami":140,
+  "Pepperoni":80,
+  "Bacon":100,
+  "Cheddar":90,
+  "Provolone":90,
+  "Pepperjack":60,
+
+  "Banana Pepper":30,
+  "Jalapeno":30,
+  "Pickle":40,
+  "Hummus":30,
+  "Guacamole":80,
+  "Green Pepper":40,
+  "Black Olive":20,
+  "Red Onion":50,
+  "Spinach":60,
+  "Cucumber":60,
+  "Tomato":50,
+  "Lettuce":40,
+
+  "UA":20,
+  "Mayo":20,
+  "Italian":10,
+  "Mustard":10,
+  "Ranch":20
+}

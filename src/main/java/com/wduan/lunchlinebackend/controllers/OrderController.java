@@ -1,26 +1,20 @@
 package com.wduan.lunchlinebackend.controllers;
 
 
-import com.google.gson.Gson;
 import com.wduan.lunchlinebackend.LogController;
-import com.wduan.lunchlinebackend.OrderQueue;
+import com.wduan.lunchlinebackend.util.Config;
+import com.wduan.lunchlinebackend.util.OrderQueue;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
 import com.wduan.lunchlinebackend.helpers.emailHelper;
 import com.wduan.lunchlinebackend.util.Order;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Objects;
 
 @CrossOrigin(
         allowCredentials = "true",
@@ -31,8 +25,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/api/v1/order")
 public class OrderController {
-
-    Gson gson = new Gson();
 
     @SneakyThrows
     @GetMapping(produces = MediaType.IMAGE_JPEG_VALUE)
@@ -100,12 +92,14 @@ public class OrderController {
             Order order = new Order((dbHelper.getD0().countDocuments()+1)*timestamp,timestamp,name, email, studentID, lunchPeriod, breadType, subSize, toasted, protein, toppings, sauces);
             LogController.log("Order id= " + order.getId() +":"+order+ " submitted!");
             OrderQueue.addOrder(order);
-            emailHelper.getInstance().sendConfirmation(order.getEmail(),order);
+            if(Config.isEmailAuth()) {
+                emailHelper.getInstance().sendConfirmation(order.getEmail(), order);
+            }
             //System.out.println(order);
 
             return "Order submitted";
         }
-        return "#";
+        return "Invalid request";
     }
 
 }

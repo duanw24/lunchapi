@@ -1,12 +1,11 @@
 package com.wduan.lunchlinebackend.controllers;
 
-import org.bson.json.JsonObject;
+import com.wduan.lunchlinebackend.util.OrderQueue;
+import com.wduan.lunchlinebackend.util.Utils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.wduan.lunchlinebackend.helpers.dbHelper;
-
-import java.util.ArrayList;
 
 @CrossOrigin(
         allowCredentials = "true",
@@ -21,5 +20,10 @@ public class ListController {
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public String getOrders() {
         return dbHelper.getOrders().toString();
+    }
+
+    @GetMapping("/queue")
+    public String getQueue() {
+        return Utils.hashMaptoJson(OrderQueue.getOrders()).toString();
     }
 }

@@ -1,7 +1,8 @@
 package com.wduan.lunchlinebackend.util;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import lombok.Getter;
-import org.bson.json.JsonObject;
 
 import java.util.Arrays;
 
@@ -39,7 +40,7 @@ public class Order {
     }
 
     public JsonObject toJson() {
-        JsonObject json = new JsonObject("{\n" +
+        return Utils.gson.fromJson("{\n" +
                 "  \"id\": "+id+",\n" +
                 "  \"fullName\": \""+name+"\",\n" +
                 "  \"studentID\": "+studentID+",\n" +
@@ -49,13 +50,13 @@ public class Order {
                 "      \"timestamp\":"+timestamp+",\n" +
                 "      \"breadType\": \""+breadType+"\",\n" +
                 "      \"toasted\": "+toasted+",\n" +
-                "      \"size\": "+ subSize +",\n" +
+                "      \"subSize\": "+ subSize +",\n" +
                 "      \"protein\": "+ Arrays.toString(protein) +"\n" +
                 "      \"topping\": "+ Arrays.toString(toppings) +",\n" +
                 "      \"sauce\": "+ Arrays.toString(sauces) +" \n" +
-                "  }\n" +
-                "}");
-        return json;
+                "  },\n" +
+                "  \"calories\": "+Utils.getCalories(this)+"\n" +
+                "}",JsonObject.class);
     }
 
     @Override
@@ -70,11 +71,12 @@ public class Order {
                 "      \"timestamp\":" + timestamp + ",\n" +
                 "      \"breadType\": \"" + breadType + "\",\n" +
                 "      \"toasted\": " + toasted + ",\n" +
-                "      \"size\": " + subSize + ",\n" +
+                "      \"subSize\": " + subSize + ",\n" +
                 "      \"protein\": " + Arrays.toString(protein) + "\n" +
                 "      \"topping\": " + Arrays.toString(toppings) + ",\n" +
                 "      \"sauce\": " + Arrays.toString(sauces) + " \n" +
-                "  }\n" +
+                "  },\n" +
+                "  \"calories\": "+Utils.getCalories(this)+"\n" +
                 "}";
     }
 }

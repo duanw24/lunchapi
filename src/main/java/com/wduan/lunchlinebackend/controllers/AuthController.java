@@ -1,9 +1,8 @@
 package com.wduan.lunchlinebackend.controllers;
 
 import com.wduan.lunchlinebackend.LogController;
-import com.wduan.lunchlinebackend.OrderQueue;
+import com.wduan.lunchlinebackend.util.OrderQueue;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
-import com.wduan.lunchlinebackend.util.Order;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;

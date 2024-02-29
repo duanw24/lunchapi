@@ -7,6 +7,7 @@ import com.mongodb.*;
 import com.mongodb.client.*;
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.util.Order;
+import com.wduan.lunchlinebackend.util.Utils;
 import lombok.Getter;
 
 import org.bson.Document;
@@ -55,7 +56,7 @@ public class dbHelper {
         FindIterable<Document> documents = d0.find();
         JsonArray jsonArray = new JsonArray();
         for (Document doc : documents) {
-            jsonArray.add(DocumentToJsonObject(doc));
+            jsonArray.add(Utils.DocumentToJsonObject(doc));
         }
         JsonObject jso = new JsonObject();
         jso.add("orders", jsonArray);
@@ -67,29 +68,5 @@ public class dbHelper {
         * Convert a MongoDB Document to a JSON Object
         * goofy ahh chatgpt written code
      */
-    private static JsonObject DocumentToJsonObject(Document doc) {
-        JsonObject jsonObject = new JsonObject();
-        doc.forEach((key, value) -> {
-            if (value instanceof Document) {
-                // If value is another document, recursively convert it to JsonObject
-                jsonObject.add(key, DocumentToJsonObject((Document) value));
-            } else if (value instanceof Iterable) {
-                // If value is a list, recursively convert each item to JsonObject
-                JsonArray jsonArray = new JsonArray();
-                for (Object item : (Iterable<?>) value) {
-                    if (item instanceof Document) {
-                        jsonArray.add(DocumentToJsonObject((Document) item));
-                    } else {
-                        jsonArray.add(item.toString());
-                    }
-                }
-                jsonObject.add(key, jsonArray);
-            } else {
-                // Otherwise, add the value directly
-                jsonObject.addProperty(key, value.toString());
-            }
-        });
-        return jsonObject;
-    }
 
 }

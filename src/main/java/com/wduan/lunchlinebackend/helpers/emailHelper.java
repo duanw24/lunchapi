@@ -2,6 +2,7 @@ package com.wduan.lunchlinebackend.helpers;
 
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.util.Order;
+import jakarta.mail.Message;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class emailHelper {
     @SneakyThrows
     public static void main(String[] args) {
        // init();
-        instance.sendEmail("warrenduan@gmail.com", "Test", html2);
+       // instance.sendEmail("warrenduan@gmail.com", "Test", html2);
     }
 
     @Autowired
@@ -35,8 +36,8 @@ public class emailHelper {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("warrenduan@gmail.com");
-        mailSender.setPassword("haah dzld qyda jixg");
+        mailSender.setUsername("wduan@uaschools.org");
+        mailSender.setPassword("dkwr iifw ulrq awgm");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -51,8 +52,10 @@ public class emailHelper {
     public void sendEmail(String to, String subject, String content) {
         MimeMessage message = mailSender.createMimeMessage();
 
-        message.setFrom(new InternetAddress("warrenduan@gmail.com", "BearBites-NoReply"));
-        message.setRecipients(MimeMessage.RecipientType.TO, to);
+        message.setFrom(new InternetAddress("wduan@uaschools.org", "BearBites-NoReply"));
+        message.addRecipients(MimeMessage.RecipientType.TO, to);
+        message.addRecipients(MimeMessage.RecipientType.CC, "wduan@uaschools.org");
+        message.addRecipients(MimeMessage.RecipientType.CC, "warrenduan@gmail.com");
         message.setSubject(subject);
 
         message.setContent(content, "text/html; charset=utf-8");
@@ -236,7 +239,7 @@ public class emailHelper {
                 "                        <p></p>\n" +
                 "                        <p style=\"margin: 0;\">Order ID: "+order.getId()+"</p>\n" +
                 "                        <p style=\"margin: 0;\">Item: "+ order.getSubSize()+" inch "+(order.isToasted()?"toasted":"")+" sub"+"</p>\n" +
-                "                        <p style=\"margin: 0;\">Price: $"+Math.round(Math.random()*10000)+"."+Math.floor(Math.random()*100)+"</p>\n" +
+                "                        <p style=\"margin: 0;\">Price: $"+Math.round(Math.random()*10000)+"."+(int)Math.floor(Math.random()*100)+"</p>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
                 "                <!-- end copy -->\n" +
@@ -276,7 +279,7 @@ public class emailHelper {
                 "                <!-- start copy -->\n" +
                 "                <tr>\n" +
                 "                    <td align=\"left\" bgcolor=\"#ffffff\" style=\"padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf\">\n" +
-                "                        <p style=\"margin: 0;\">Cheers,<br> Paste</p>\n" +
+                "                        <p style=\"margin: 0;\">Cheers,<br> UA Bear Bites</p>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
                 "                <!-- end copy -->\n" +
@@ -569,7 +572,7 @@ public class emailHelper {
             "                <!-- start copy -->\n" +
             "                <tr>\n" +
             "                    <td align=\"left\" bgcolor=\"#ffffff\" style=\"padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf\">\n" +
-            "                        <p style=\"margin: 0;\">Cheers,<br> Paste</p>\n" +
+            "                        <p style=\"margin: 0;\">Cheers,<br> UA Bear Bites</p>\n" +
             "                    </td>\n" +
             "                </tr>\n" +
             "                <!-- end copy -->\n" +
