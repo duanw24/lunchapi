@@ -1,6 +1,5 @@
 package com.wduan.lunchlinebackend.controllers;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
@@ -18,7 +17,7 @@ import static com.mongodb.client.model.Filters.eq;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/refresh")
+@RequestMapping("/api/v1/sync")
 
 public class SyncController {
     @GetMapping(produces = {MediaType.ALL_VALUE})
@@ -52,7 +51,7 @@ public class SyncController {
             t2.append("lunchPeriod", dOrder.get("lunchPeriod"));
             t2.append("calories", dOrder.get("calories"));
             t2.append("recentOrder", t1);
-            t2.append("orderHistory", "[]");
+            t2.append("orderHistory", new Document[0]);
 
             dbHelper.getStdl().insertOne(t2);
             LogController.log("Inserting " + t2 + " -> stdl");
