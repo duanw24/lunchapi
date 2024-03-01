@@ -3,15 +3,15 @@ package com.wduan.lunchlinebackend.util;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.wduan.lunchlinebackend.LogController;
 import lombok.SneakyThrows;
 import org.bson.Document;
+import org.springframework.core.io.Resource;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.io.*;
+import java.net.URI;
+import java.nio.file.Path;
+import java.util.*;
 
 public class Utils {
     public static Gson gson = new Gson();
@@ -88,9 +88,42 @@ public class Utils {
             jsonArray.add(order.toJson());
         }
 
-        json.add("orders", jsonArray); // Assuming you want to wrap the array in a "orders" key
+        json.add("orders", jsonArray);
 
         return json;
     }
+
+    public static String randomEmotiGuy() {
+        File folder = new File("src/main/resources/emotiguy");
+        File[] files = folder.listFiles();
+
+        if (files != null && files.length > 0) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(files.length);
+            return files[randomIndex].getName();
+        } else {
+            LogController.log("there aren't any images you fucking clown");
+        }
+        return null;
+    }
+
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> presort) {
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(presort.entrySet());
+
+        // Sort the list
+        list.sort(new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // Put data from sorted list to a new LinkedHashMap
+        HashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
+
 
 }

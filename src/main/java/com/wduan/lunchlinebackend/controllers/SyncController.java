@@ -1,12 +1,18 @@
 package com.wduan.lunchlinebackend.controllers;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
 import com.wduan.lunchlinebackend.util.Utils;
 import org.bson.Document;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -20,14 +26,20 @@ import static com.mongodb.client.model.Filters.eq;
 @RequestMapping("/api/v1/sync")
 
 public class SyncController {
-    @GetMapping(produces = {MediaType.ALL_VALUE})
-    public Object refresh() {
+    @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE})
+    public byte[] refresh() {
         LogController.log("GET /api/v1/refresh");
+        System.out.println("Syncing"+dbHelper.getD0().countDocuments()+" Daily Orders...");
         dbHelper.getD0().find().forEach(this::reorg);
         LogController.log("Sync complete. Dropping d0 now.");
         dbHelper.getD0().deleteMany(new Document());
         LogController.log("d0 drop complete.");
-        return 1;
+
+        try {
+            return new ClassPathResource("images/3d_arab.jpg").getContentAsByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void reorg(Document dOrder) {
@@ -51,7 +63,7 @@ public class SyncController {
             t2.append("lunchPeriod", dOrder.get("lunchPeriod"));
             t2.append("calories", dOrder.get("calories"));
             t2.append("recentOrder", t1);
-            t2.append("orderHistory", new Document[0]);
+            t2.append("orderHistory", new ArrayList<>());
 
             dbHelper.getStdl().insertOne(t2);
             LogController.log("Inserting " + t2 + " -> stdl");
