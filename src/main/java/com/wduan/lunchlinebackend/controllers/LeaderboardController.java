@@ -29,7 +29,7 @@ public class LeaderboardController {
 
         ArrayList<Pair<String, Integer>> t1 = new ArrayList<>();
         ArrayList<Pair<String, Integer>> ft1 = t1;
-        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(), Integer.parseInt(document.get("calories").toString()))));
+        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(), Integer.parseInt(document.get("calories").toString()))));
         ft1.sort(Comparator.comparingInt(Pair::getValue));
         Collections.reverse(ft1);
         JsonObject calorieLB = new JsonObject();
@@ -40,7 +40,7 @@ public class LeaderboardController {
         t1.clear();
         ft1.clear();
 
-        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(),((List<Document>)document.get("orderHistory")).size())));
+        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(),((List<Document>)document.get("orderHistory")).size())));
         ft1.sort(Comparator.comparingInt(Pair::getValue));
         Collections.reverse(ft1);
 
