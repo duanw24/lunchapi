@@ -1,16 +1,14 @@
 package com.wduan.lunchlinebackend.controllers;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.mongodb.client.model.Updates;
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
-import com.wduan.lunchlinebackend.util.Utils;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,14 +27,14 @@ public class SyncController {
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE})
     public byte[] refresh() {
         LogController.log("GET /api/v1/refresh");
-        System.out.println("Syncing"+dbHelper.getD0().countDocuments()+" Daily Orders...");
+        LogController.log("Syncing"+dbHelper.getD0().countDocuments()+" Daily Orders...");
         dbHelper.getD0().find().forEach(this::reorg);
         LogController.log("Sync complete. Dropping d0 now.");
-        dbHelper.getD0().deleteMany(new Document());
+        //dbHelper.getD0().deleteMany(new Document());
         LogController.log("d0 drop complete.");
 
         try {
-            return new ClassPathResource("images/3d_arab.jpg").getContentAsByteArray();
+            return new ClassPathResource("emotiguy/3d_arab.jpg").getContentAsByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -44,7 +42,6 @@ public class SyncController {
 
     public void reorg(Document dOrder) {
         Document temp = dbHelper.getStdl().find(eq("email", dOrder.get("email"))).first();
-        System.out.println(temp);
         if (temp == null) {
             LogController.log("No existing user found, creating new user " + dOrder.get("email"));
             Document tOrder= (Document) dOrder.get("order");
@@ -68,9 +65,14 @@ public class SyncController {
             dbHelper.getStdl().insertOne(t2);
             LogController.log("Inserting " + t2 + " -> stdl");
         } else {
-            dbHelper.getStdl().updateOne(temp, new Document("$push", new Document("orderHistory", temp.get("recentOrder"))));
-            dbHelper.getStdl().updateOne(temp, new Document("$set", new Document("recentOrder", dOrder.get("order"))));
-            dbHelper.getStdl().updateOne(temp, new Document("$set", new Document("calories", Integer.parseInt(temp.get("calories").toString())+Integer.parseInt(dOrder.get("calories").toString()))));
+            LogController.log("User found, updating order history " + dOrder.get("email"));
+            Bson updates = Updates.combine(
+                    Updates.push("orderHistory", temp.get("recentOrder")),
+                    Updates.set("recentOrder", dOrder.get("order")),
+                    Updates.inc("calories", (Number)dOrder.get("calories"))
+            );
+
+           dbHelper.getStdl().updateOne(eq("email", dOrder.get("email")), updates);
         }
     }
     /*async function reorg2(dOrder) {

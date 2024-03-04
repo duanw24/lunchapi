@@ -1,17 +1,15 @@
 package com.wduan.lunchlinebackend.controllers;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mongodb.BasicDBObject;
+import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
-import com.wduan.lunchlinebackend.util.Utils;
+import jakarta.servlet.http.HttpServletRequest;
+import javafx.util.Pair;
 import org.bson.Document;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 @CrossOrigin(
         allowCredentials = "true",
@@ -23,30 +21,38 @@ import java.util.function.Consumer;
 @RequestMapping("/api/v1/leaderboard")
 public class LeaderboardController {
 
+    @SuppressWarnings("unchecked")
     @GetMapping(produces = "application/json")
-    public ResponseEntity<Object> getLeaderboard() {
+    public ResponseEntity<Object> getLeaderboard(HttpServletRequest request) {
+        LogController.log("GET /api/v1/leaderboard from ip: " + request.getRemoteAddr());
         JsonObject leaderboard = new JsonObject();
-        HashMap<String, Integer> userCalories = new HashMap<>();
-        dbHelper.getStdl().find().forEach((Consumer<Document>) document -> {
-            userCalories.put((String) document.get("fullName"), (Integer) document.get("calories"));
-        });
-        HashMap<String, Integer> temp = Utils.sortByValue(userCalories);
 
-        JsonArray leaderboardArray = new JsonArray();
-        temp.forEach((s, integer) -> {
-            JsonObject user = new JsonObject();
-            user.addProperty("name", s);
-            user.addProperty("calories", integer);
-            leaderboardArray.add(user);
-        });
+        ArrayList<Pair<String, Integer>> t1 = new ArrayList<>();
+        ArrayList<Pair<String, Integer>> ft1 = t1;
+        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(), Integer.parseInt(document.get("calories").toString()))));
+        ft1.sort(Comparator.comparingInt(Pair::getValue));
+        Collections.reverse(ft1);
+        JsonObject calorieLB = new JsonObject();
 
-        // Check if the leaderboard array is empty
-        if (leaderboardArray.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Leaderboard is empty.");
-        } else {
-            // Return the leaderboard array
-            return ResponseEntity.ok(leaderboardArray.toString());
-        }
+        if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
+        t1.forEach(n->calorieLB.addProperty(n.getKey(),n.getValue()));
+
+        t1.clear();
+        ft1.clear();
+
+        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(),((List<Document>)document.get("orderHistory")).size())));
+        ft1.sort(Comparator.comparingInt(Pair::getValue));
+        Collections.reverse(ft1);
+
+        if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
+        JsonObject orderLB = new JsonObject();
+        t1.forEach(n-> orderLB.addProperty(n.getKey(),n.getValue()));
+
+
+        leaderboard.add("calories", calorieLB);
+        leaderboard.add("orders", orderLB);
+
+        return ResponseEntity.ok(leaderboard.toString());
     }
 
 

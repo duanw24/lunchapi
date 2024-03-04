@@ -8,7 +8,6 @@ import com.wduan.lunchlinebackend.helpers.dbHelper;
 import com.wduan.lunchlinebackend.helpers.emailHelper;
 import com.wduan.lunchlinebackend.util.Order;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
@@ -28,15 +27,16 @@ public class OrderController {
 
     @SneakyThrows
     @GetMapping(produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getPhoto2(HttpServletRequest request, HttpServletResponse response) {
-        return new ClassPathResource("images/3d_arab.jpg").getContentAsByteArray();
+    public @ResponseBody byte[] getPhoto2(HttpServletRequest request) {
+        LogController.log("GET /api/v1/order from ip: "+request.getRemoteAddr());
+        return new ClassPathResource("emotiguy/3d_arab.jpg").getContentAsByteArray();
     }
 
 
     @SneakyThrows
     @PostMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public Object submitOrder(HttpServletRequest request, HttpServletResponse response) {
-        LogController.log("GET /api/v1/order from ip: " + request.getRemoteAddr());
+    public Object submitOrder(HttpServletRequest request) {
+        LogController.log("POST /api/v1/order from ip: " + request.getRemoteAddr());
         String queryString = java.net.URLDecoder.decode(request.getQueryString(), StandardCharsets.UTF_8);
         if(queryString!=null) {
             //actual cancer
