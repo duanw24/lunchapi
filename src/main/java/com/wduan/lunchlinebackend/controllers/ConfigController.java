@@ -1,7 +1,7 @@
 package com.wduan.lunchlinebackend.controllers;
 
 import com.wduan.lunchlinebackend.LogController;
-import com.wduan.lunchlinebackend.util.Config;
+import com.wduan.lunchlinebackend.Config;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 )
 @RestController
 @RequestMapping("/api/v1/secret/config")
-public class SettingsController {
+public class ConfigController {
 
     @RequestMapping(produces = "application/json")
     public String change(HttpServletRequest request, HttpServletResponse response) {

@@ -1,7 +1,7 @@
 package com.wduan.lunchlinebackend.util;
 
+import com.wduan.lunchlinebackend.Config;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
-import com.wduan.lunchlinebackend.util.Order;
 import lombok.Getter;
 
 import java.util.HashMap;

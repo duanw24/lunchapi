@@ -2,7 +2,7 @@ package com.wduan.lunchlinebackend.controllers;
 
 
 import com.wduan.lunchlinebackend.LogController;
-import com.wduan.lunchlinebackend.util.Config;
+import com.wduan.lunchlinebackend.Config;
 import com.wduan.lunchlinebackend.util.OrderQueue;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
 import com.wduan.lunchlinebackend.helpers.emailHelper;
