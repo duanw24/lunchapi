@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 
 public class OrderQueue {
-    //private static final int MAX_ORDERS = 100;
     @Getter
     private static HashMap<String, Order> orders = new HashMap<>();
 

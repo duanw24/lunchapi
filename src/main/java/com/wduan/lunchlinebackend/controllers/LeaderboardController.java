@@ -21,37 +21,44 @@ import java.util.*;
 @RequestMapping("/api/v1/leaderboard")
 public class LeaderboardController {
 
+    private static JsonObject leaderboard;
+    private boolean flag = false;
+
     @SuppressWarnings("unchecked")
     @GetMapping(produces = "application/json")
     public ResponseEntity<Object> getLeaderboard(HttpServletRequest request) {
-        LogController.log("GET /api/v1/leaderboard from ip: " + request.getRemoteAddr());
-        JsonObject leaderboard = new JsonObject();
+        if(!flag) {
+            LogController.log("GET /api/v1/leaderboard from ip: " + request.getRemoteAddr());
+            JsonObject leaderboard = new JsonObject();
 
-        ArrayList<Pair<String, Integer>> t1 = new ArrayList<>();
-        ArrayList<Pair<String, Integer>> ft1 = t1;
-        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(), Integer.parseInt(document.get("calories").toString()))));
-        ft1.sort(Comparator.comparingInt(Pair::getValue));
-        Collections.reverse(ft1);
-        JsonObject calorieLB = new JsonObject();
+            ArrayList<Pair<String, Integer>> t1 = new ArrayList<>();
+            ArrayList<Pair<String, Integer>> ft1 = t1;
+            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(), Integer.parseInt(document.get("calories").toString()))));
+            ft1.sort(Comparator.comparingInt(Pair::getValue));
+            Collections.reverse(ft1);
+            JsonObject calorieLB = new JsonObject();
 
-        if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
-        t1.forEach(n->calorieLB.addProperty(n.getKey(),n.getValue()));
+            if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
+            t1.forEach(n->calorieLB.addProperty(n.getKey(),n.getValue()));
 
-        t1.clear();
-        ft1.clear();
+            t1.clear();
+            ft1.clear();
 
-        dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(),((List<Document>)document.get("orderHistory")).size())));
-        ft1.sort(Comparator.comparingInt(Pair::getValue));
-        Collections.reverse(ft1);
+            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(),((List<Document>)document.get("orderHistory")).size())));
+            ft1.sort(Comparator.comparingInt(Pair::getValue));
+            Collections.reverse(ft1);
 
-        if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
-        JsonObject orderLB = new JsonObject();
-        t1.forEach(n-> orderLB.addProperty(n.getKey(),n.getValue()));
+            if(t1.size()>100) {t1 = new ArrayList<>(t1.subList(0,100));}
+            JsonObject orderLB = new JsonObject();
+            t1.forEach(n-> orderLB.addProperty(n.getKey(),n.getValue()));
 
 
-        leaderboard.add("calories", calorieLB);
-        leaderboard.add("orders", orderLB);
+            leaderboard.add("calories", calorieLB);
+            leaderboard.add("orders", orderLB);
 
+            flag=true;
+            return ResponseEntity.ok(leaderboard.toString());
+        }
         return ResponseEntity.ok(leaderboard.toString());
     }
 
