@@ -8,6 +8,7 @@ import org.bson.Document;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static Gson gson = new Gson();
@@ -103,5 +104,8 @@ public class Utils {
         return null;
     }
 
+    public static String toppingJoiner(JsonArray array) {
+        return array.asList().stream().map(Object::toString).map(n-> n.substring(1,n.length()-1)).collect(Collectors.joining("-"));
+    }
 
 }

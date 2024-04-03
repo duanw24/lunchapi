@@ -18,7 +18,7 @@ import java.util.Arrays;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/secret/config")
+@RequestMapping("/v1/secret/config")
 public class ConfigController {
 
     @RequestMapping(produces = "application/json")

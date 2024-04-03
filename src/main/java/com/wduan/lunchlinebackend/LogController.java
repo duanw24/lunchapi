@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/logs")
+@RequestMapping("/v1/logs")
 public class LogController {
 
     @Getter

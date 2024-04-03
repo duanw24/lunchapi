@@ -20,8 +20,8 @@ public class OrderQueue {
 
     public static void addOrder(Order order) {
         if (orders.size() < Config.getMaxOrders()) {
-            //unique identifier is timestamp*(1+id)
-            orders.put(String.valueOf(order.getId()), order);
+            //unique identifier is timestamp*(69id+1)
+            orders.put(String.valueOf(order.getTimestamp()*(order.getId()*69+1)), order);
             if(!Config.isEmailAuth()) {
                 dbHelper.submitOrder(order);
             }

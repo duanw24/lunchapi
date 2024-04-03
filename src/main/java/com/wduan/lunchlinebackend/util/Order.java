@@ -21,6 +21,7 @@ public class Order {
     private String[] sauces;
 
     private long timestamp;
+    private long id2;
 
     public Order(long id, long timestamp, String name, String email, int studentID, int lunchPeriod, String breadType, int subSize, boolean toasted, String[] protein, String[] toppings, String[] sauces) {
         this.name = name;
@@ -36,7 +37,6 @@ public class Order {
 
         this.timestamp = timestamp;
         this.id=id;
-
     }
 
     public JsonObject toJson() {

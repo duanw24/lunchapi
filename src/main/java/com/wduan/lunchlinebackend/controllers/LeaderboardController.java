@@ -18,22 +18,30 @@ import java.util.*;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/leaderboard")
+@RequestMapping("/v1/leaderboard")
 public class LeaderboardController {
 
     private static JsonObject leaderboard;
     private boolean flag = false;
 
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<Object> resetLeaderboard(HttpServletRequest request) {
+        LogController.log("POST /v1/leaderboard from ip: " + request.getRemoteAddr());
+        leaderboard = new JsonObject();
+        flag=false;
+        return ResponseEntity.ok("Leaderboard reset");
+    }
+
     @SuppressWarnings("unchecked")
     @GetMapping(produces = "application/json")
     public ResponseEntity<Object> getLeaderboard(HttpServletRequest request) {
         if(!flag) {
-            LogController.log("GET /api/v1/leaderboard from ip: " + request.getRemoteAddr());
+            LogController.log("GET /v1/leaderboard from ip: " + request.getRemoteAddr());
             JsonObject leaderboard = new JsonObject();
 
             ArrayList<Pair<String, Integer>> t1 = new ArrayList<>();
             ArrayList<Pair<String, Integer>> ft1 = t1;
-            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(), Integer.parseInt(document.get("calories").toString()))));
+            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(), Integer.parseInt(document.get("calories").toString()))));
             ft1.sort(Comparator.comparingInt(Pair::getValue));
             Collections.reverse(ft1);
             JsonObject calorieLB = new JsonObject();
@@ -44,7 +52,7 @@ public class LeaderboardController {
             t1.clear();
             ft1.clear();
 
-            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("email").toString(),((List<Document>)document.get("orderHistory")).size())));
+            dbHelper.getStdl().find().forEach(document -> ft1.add(new Pair<>(document.get("fullName").toString(),((List<Document>)document.get("orderHistory")).size())));
             ft1.sort(Comparator.comparingInt(Pair::getValue));
             Collections.reverse(ft1);
 

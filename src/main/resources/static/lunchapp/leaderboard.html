@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+    body, html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 700;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, calc(100% / 2));
+        height: 100%;
+        width: 100%;
+    }
+    .leaderboard {
+        border: 1px solid #ccc;
+        padding-left: 10px;
+        text-align: left;
+        font-size: 18px;
+    }
+    .leaderboard-spot {
+        display: grid;
+        grid-template-columns: 10% 45% 45%;
+    }
+    .item {
+margin-top: 10px;
+        margin-bottom: 5px;
+    font-size: x-large;
+    }
+</style>
+<body>
+<div class="grid-container">
+    <div id="calories" class="leaderboard">
+        <div style="font-size: xxx-large; font-weight: 700">calories leaderboard</div>
+
+        <div class="leaderboard-spot">
+            <p class="item" style="text-align: left; margin-left: 10%" >1</p>
+            <p class="item" style="text-align: center">Warren Duan</p>
+            <p class="item" style="text-align: right; margin-right: 10%">1000 Calories Consumed</p>
+        </div>
+
+
+
+    </div>
+    <div id="orders" class="leaderboard">
+        <div style="font-size: xxx-large; font-weight: 700">orders leaderboard</div>
+
+        <div class="leaderboard-spot">
+            <p class="item" style="text-align: left; margin-left: 10%" >1</p>
+            <p class="item" style="text-align: center">Warren Duan</p>
+            <p class="item" style="text-align: right; margin-right: 10%">1000 Orders Placed</p>
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>

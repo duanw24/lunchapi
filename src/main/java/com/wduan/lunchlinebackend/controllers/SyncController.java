@@ -21,7 +21,7 @@ import static com.mongodb.client.model.Filters.eq;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/sync")
+@RequestMapping("/v1/sync")
 
 public class SyncController {
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE})

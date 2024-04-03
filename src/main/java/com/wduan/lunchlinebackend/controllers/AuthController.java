@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/v1/auth")
 public class AuthController {
 
     @SneakyThrows

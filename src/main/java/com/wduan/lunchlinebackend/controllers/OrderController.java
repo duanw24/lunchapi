@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
 @RestController
-@RequestMapping("/api/v1/order")
+@RequestMapping("/v1/order")
 public class OrderController {
 
     @SneakyThrows
@@ -89,7 +89,7 @@ public class OrderController {
                 }
             }
             long timestamp=System.currentTimeMillis();
-            Order order = new Order((dbHelper.getD0().countDocuments()+1)*timestamp,timestamp,name, email, studentID, lunchPeriod, breadType, subSize, toasted, protein, toppings, sauces);
+            Order order = new Order(dbHelper.getD0().countDocuments(),timestamp,name, email, studentID, lunchPeriod, breadType, subSize, toasted, protein, toppings, sauces);
             LogController.log("Order id= " + order.getId() +":"+order+ " submitted!");
             OrderQueue.addOrder(order);
             if(Config.isEmailAuth()) {
