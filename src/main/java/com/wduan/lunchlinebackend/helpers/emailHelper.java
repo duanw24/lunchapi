@@ -22,8 +22,8 @@ public class emailHelper {
 
     @SneakyThrows
     public static void main(String[] args) {
-       // init();
-       // instance.sendEmail("warrenduan@gmail.com", "Test", html2);
+       //init();
+       instance.sendEmail("warrenduan@gmail.com", "Test", html2);
     }
 
     @Autowired

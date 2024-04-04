@@ -148,7 +148,7 @@ public class LeaderboardController {
                 .item {
             margin-top: 10px;
                     margin-bottom: 5px;
-                font-size: x-large;
+                font-size: large;
                 }
             </style>
             <body>
