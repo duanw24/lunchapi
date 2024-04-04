@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+    var end = Date.now() + (15 * 1000);
+
+    function orderEffect() {
+        var duration = 15 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 200, zIndex: 0 };
+
+        var interval = setInterval(function() {
+            var timeLeft = Math.random()*200000;
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            var particleCount = 50 * (timeLeft / duration);
+            // since particles fall down, start a bit higher than random
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.3 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.3 } });
+        }, 250);
+    }
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+</script>
+<style>
+.d1 {
+    zoom: 1.5;
+    -moz-transform: scale(1.5);
+    -moz-transform-origin: 50% 0%;
+    height: 100%;
+    width: 100%;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+<body onload="orderEffect()">
+<div class="d1">
+    <h1 style="font-size: xxx-large">Success!</h1>
+    <img src="https://api.wduan.dev/emotiguy/3d_cool.jpg" alt="epic">
+    <p style="font-size: x-large">Your order has been confirmed!</p>
+</div>
+</body>
+</html>

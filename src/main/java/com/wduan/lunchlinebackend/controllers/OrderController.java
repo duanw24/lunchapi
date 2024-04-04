@@ -29,7 +29,7 @@ public class OrderController {
     @GetMapping(produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getPhoto2(HttpServletRequest request) {
         LogController.log("GET /api/v1/order from ip: "+request.getRemoteAddr());
-        return new ClassPathResource("emotiguy/3d_arab.jpg").getContentAsByteArray();
+        return new ClassPathResource("static/emotiguy/3d_arab.jpg").getContentAsByteArray();
     }
 
 

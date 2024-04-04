@@ -5,8 +5,10 @@ import com.wduan.lunchlinebackend.util.OrderQueue;
 import com.wduan.lunchlinebackend.helpers.dbHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
+import org.apache.coyote.Response;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
@@ -22,8 +24,8 @@ import java.nio.charset.StandardCharsets;
 public class AuthController {
 
     @SneakyThrows
-    @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public Object confirmOrder(HttpServletRequest request) {
+    @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
+    public ResponseEntity<Object> confirmOrder(HttpServletRequest request) {
         //literal cancer
         LogController.log("GET /api/v1/auth from ip: " + request.getRemoteAddr());
         String queryString = java.net.URLDecoder.decode(request.getQueryString(), StandardCharsets.UTF_8);
@@ -33,13 +35,13 @@ public class AuthController {
                 dbHelper.submitOrder(OrderQueue.getOrder(id));
                 OrderQueue.getOrders().remove(id);
                 //LogController.log("Order id= " + id + " submitted!");
-                return new ClassPathResource("emotiguy/3d_cool.jpg").getContentAsByteArray();
+                return ResponseEntity.ok(new ClassPathResource("static/lunchapp/success.html"));
             } else {
                 LogController.log("Order id= " + id + " not found!");
-                return new ClassPathResource("emotiguy/3d_arab2.png").getContentAsByteArray();
+                return ResponseEntity.ok(new ClassPathResource("static/lunchapp/success.html"));
             }
         }
         LogController.log("No Key Provided");
-        return new ClassPathResource("emotiguy/3d_arab2.png").getContentAsByteArray();
+        return ResponseEntity.ok(new ClassPathResource("static/emotiguy/3d_arab2.png").getContentAsByteArray());
     }
 }

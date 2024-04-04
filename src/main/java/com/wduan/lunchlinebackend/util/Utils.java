@@ -91,7 +91,7 @@ public class Utils {
     }
 
     public static String randomEmotiGuy() {
-        File folder = new File("src/main/resources/emotiguy");
+        File folder = new File("src/main/resources/static/emotiguy");
         File[] files = folder.listFiles();
 
         if (files != null && files.length > 0) {

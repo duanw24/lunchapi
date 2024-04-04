@@ -29,6 +29,6 @@ public class LunchlineBackendApplication {
 
     @GetMapping(produces = MediaType.IMAGE_JPEG_VALUE)
     public Object home() {
-        return new ClassPathResource("emotiguy/"+Utils.randomEmotiGuy());
+        return new ClassPathResource("static/emotiguy/" +Utils.randomEmotiGuy());
     }
 }

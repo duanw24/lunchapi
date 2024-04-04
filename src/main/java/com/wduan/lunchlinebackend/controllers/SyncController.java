@@ -34,7 +34,7 @@ public class SyncController {
         LogController.log("d0 drop complete.");
 
         try {
-            return new ClassPathResource("emotiguy/3d_arab.jpg").getContentAsByteArray();
+            return new ClassPathResource("static/emotiguy/3d_arab.jpg").getContentAsByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
