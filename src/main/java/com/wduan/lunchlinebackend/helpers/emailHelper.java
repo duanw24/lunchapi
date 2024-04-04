@@ -177,8 +177,8 @@ public class emailHelper {
                 "            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"max-width: 600px;\">\n" +
                 "                <tr>\n" +
                 "                    <td align=\"center\" valign=\"top\" style=\"padding: 36px 24px;\">\n" +
-                "                        <a href=\"https://lunchapp.wduan.dev/\" target=\"_blank\" style=\"display: inline-block;\">\n" +
-                "                            <img src=\"https://lunchapp.wduan.dev/images/BearBitesDeli_Colored.png\" alt=\""+"\" border=\"0\" width=\"200\" style=\"display: block; width: 200px; max-width: 200px; min-width: 200px;\">\n" +
+                "                        <a href=\"https://wduan.dev/lunch\" target=\"_blank\" style=\"display: inline-block;\">\n" +
+                "                            <img src=\"https://wduan.dev/lunch/images/BearBitesDeli_Colored.png\" alt=\""+"\" border=\"0\" width=\"200\" style=\"display: block; width: 200px; max-width: 200px; min-width: 200px;\">\n" +
                 "                        </a>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
@@ -250,7 +250,7 @@ public class emailHelper {
                 "                                    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n" +
                 "                                        <tr>\n" +
                 "                                            <td align=\"center\" bgcolor=\"#1a82e2\" style=\"border-radius: 6px;\">\n" +
-                "                                                <a href=\"https://lunchapi.wduan.dev/api/v1/auth?key="+(order.getTimestamp()*(order.getId()*69+1))+"\" target=\"_blank\" style=\"display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;\">Confirm Order</a>\n" +
+                "                                                <a href=\"https://api.wduan.dev/v1/auth?key="+(order.getTimestamp()*(order.getId()*69+1))+"\" target=\"_blank\" style=\"display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;\">Confirm Order</a>\n" +
                 "                                            </td>\n" +
                 "                                        </tr>\n" +
                 "                                    </table>\n" +
@@ -265,7 +265,7 @@ public class emailHelper {
                 "                <tr>\n" +
                 "                    <td align=\"left\" bgcolor=\"#ffffff\" style=\"padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;\">\n" +
                 "                        <p style=\"margin: 0;\">If that doesn't work, copy and paste the following link in your browser:</p>\n" +
-                "                        <p style=\"margin: 0;\"><a href=\""+"https://lunchapi.wduan.dev/api/v1/auth?key="+(order.getTimestamp()*(order.getId()*69+1))+"\" target=\"_blank\">"+"https://lunchapi.wduan.dev/api/v1/auth?key="+order.getId()+"</a></p>\n" +
+                "                        <p style=\"margin: 0;\"><a href=\""+"https://api.wduan.dev/v1/auth?key="+(order.getTimestamp()*(order.getId()*69+1))+"\" target=\"_blank\">"+"https://api.wduan.dev/v1/auth?key="+order.getId()+"</a></p>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
                 "                <!-- end copy -->\n" +

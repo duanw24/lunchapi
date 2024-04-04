@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(
         allowCredentials = "true",
-        origins = {"http://localhost","https://lunchapp.wduan.dev","lunchapi.wduan.dev"},
+        origins = {"http://localhost","https://wduan.dev","lunchapi.wduan.dev"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET,RequestMethod.POST}
 )
