@@ -29,7 +29,7 @@ public class LeaderboardController {
     private JsonObject leaderboard;
     private boolean flag = false;
 
-    @GetMapping(path="/refresh", produces = "application/json")
+    @GetMapping(path="/refresh", produces = "text/plain")
     public ResponseEntity<Object> resetLeaderboard(HttpServletRequest request) {
         LogController.log("GET /v1/leaderboard/refresh from ip: " + request.getRemoteAddr());
         leaderboard = new JsonObject();
@@ -41,8 +41,16 @@ public class LeaderboardController {
     public ResponseEntity<Object> getLeaderboard(HttpServletRequest request) {
         LogController.log("GET /v1/leaderboard from ip: " + request.getRemoteAddr());
 
-        return new ResponseEntity<>(getLeaderboard(), HttpStatus.OK);
+        return ResponseEntity.ok(getLeaderboard());
     }
+
+    @GetMapping(path="/raw", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getRawLeaderboard(HttpServletRequest request) {
+        LogController.log("GET /v1/leaderboard/raw from ip: " + request.getRemoteAddr());
+        return ResponseEntity.ok(leaderboard);
+    }
+
+
     private String getLeaderboard() {
         JsonObject leaderboard=this.leaderboard;
         if (!this.flag) {
@@ -110,7 +118,7 @@ public class LeaderboardController {
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>Title</title>
+                <title>subshop leaderboard</title>
             </head>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -124,7 +132,7 @@ public class LeaderboardController {
                 .grid-container {
                     display: grid;
                     grid-template-columns: repeat(2, calc(100% / 2));
-                    height: 100%;
+                    height: 95%;
                     width: 100%;
                 }
                 .leaderboard {
@@ -158,6 +166,8 @@ public class LeaderboardController {
     private static String l3= """
                 </div>
             </div>
+<footer style="text-align: center; font-size:large; font-weight:600; padding:0"><a href="https://api.wduan.dev/v1/leaderboard/raw">raw data</a><br>wduan.dev<br>2024</footer>
+           
             </body>
             </html>
             """;

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 public class Config {
     @Getter@Setter
-    private static boolean emailAuth = true;
+    private static boolean emailAuth = false;
     @Getter@Setter
     private static int maxOrders = 100;
 
