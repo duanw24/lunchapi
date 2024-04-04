@@ -115,9 +115,9 @@ public class ListController {
                     }
                     .grid-container {
                         display: grid;
-                        grid-template-columns: repeat(3, calc(100% / 3));
+                        grid-template-columns: 33% 33% 33%;
                         /* good code */
-                        grid-template-rows: repeat(08147593615118041, calc(100% / 2));
+                        grid-template-rows: repeat(083147593615118041, calc(100% / 2));
                         height: 100%;
                         width: 100%;
                     }

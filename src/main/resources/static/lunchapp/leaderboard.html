@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>subshop leaderboard</title>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -15,8 +15,8 @@
     }
     .grid-container {
         display: grid;
-        grid-template-columns: 50% 50%;
-        height: 94%;
+        grid-template-columns: repeat(2, calc(100% / 2));
+        height: 91%;
         width: 100%;
     }
     .leaderboard {
@@ -32,36 +32,67 @@
     .item {
         margin-top: 10px;
         margin-bottom: 5px;
-        font-size: x-large;
+        font-size: large;
     }
 </style>
 <body>
 <div class="grid-container">
     <div id="calories" class="leaderboard">
-        <div style="font-size: xxx-large; font-weight: 700">calories leaderboard</div>
-
+        <div style="font-size: xxx-large; font-weight: 710">calories leaderboard</div>
         <div class="leaderboard-spot">
             <p class="item" style="text-align: left; margin-left: 10%" >1</p>
-            <p class="item" style="text-align: center">Warren Duan</p>
-            <p class="item" style="text-align: right; margin-right: 10%">1000 Calories Consumed</p>
-        </div>
-
-
-
-    </div>
+            <p class="item" style="text-align: center">Jachin</p>
+            <p class="item" style="text-align: right; margin-right: 10%">22770 Calories Consumed</p>
+        </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >2</p>
+        <p class="item" style="text-align: center">Jachin </p>
+        <p class="item" style="text-align: right; margin-right: 10%">16600 Calories Consumed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >3</p>
+        <p class="item" style="text-align: center">Warren Duan</p>
+        <p class="item" style="text-align: right; margin-right: 10%">6710 Calories Consumed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >4</p>
+        <p class="item" style="text-align: center">diane kahle</p>
+        <p class="item" style="text-align: right; margin-right: 10%">5520 Calories Consumed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >5</p>
+        <p class="item" style="text-align: center">allen</p>
+        <p class="item" style="text-align: right; margin-right: 10%">4140 Calories Consumed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >6</p>
+        <p class="item" style="text-align: center">jared rabadam</p>
+        <p class="item" style="text-align: right; margin-right: 10%">2760 Calories Consumed</p>
+    </div>    </div>
     <div id="orders" class="leaderboard">
-        <div style="font-size: xxx-large; font-weight: 700">orders leaderboard</div>
-
+        <div style="font-size: xxx-large; font-weight: 710">orders leaderboard</div>
         <div class="leaderboard-spot">
             <p class="item" style="text-align: left; margin-left: 10%" >1</p>
-            <p class="item" style="text-align: center">Warren Duan</p>
-            <p class="item" style="text-align: right; margin-right: 10%">1000 Orders Placed</p>
-        </div>
-
-
-
-    </div>
+            <p class="item" style="text-align: center">Jachin</p>
+            <p class="item" style="text-align: right; margin-right: 10%">33 Orders Placed</p>
+        </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >2</p>
+        <p class="item" style="text-align: center">Warren Duan</p>
+        <p class="item" style="text-align: right; margin-right: 10%">11 Orders Placed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >3</p>
+        <p class="item" style="text-align: center">Jachin </p>
+        <p class="item" style="text-align: right; margin-right: 10%">10 Orders Placed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >4</p>
+        <p class="item" style="text-align: center">diane kahle</p>
+        <p class="item" style="text-align: right; margin-right: 10%">8 Orders Placed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >5</p>
+        <p class="item" style="text-align: center">allen</p>
+        <p class="item" style="text-align: right; margin-right: 10%">6 Orders Placed</p>
+    </div> <div class="leaderboard-spot">
+        <p class="item" style="text-align: left; margin-left: 10%" >6</p>
+        <p class="item" style="text-align: center">jared rabadam</p>
+        <p class="item" style="text-align: right; margin-right: 10%">4 Orders Placed</p>
+    </div>                </div>
 </div>
 <footer style="text-align: center; font-size:large; font-weight:600; padding:0"><a href="https://api.wduan.dev/v1/leaderboard/raw">raw data</a><br>wduan.dev<br>2024</footer>
+
 </body>
 </html>

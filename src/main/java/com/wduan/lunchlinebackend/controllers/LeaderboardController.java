@@ -132,7 +132,7 @@ public class LeaderboardController {
                 .grid-container {
                     display: grid;
                     grid-template-columns: repeat(2, calc(100% / 2));
-                    height: 95%;
+                    height: 91%;
                     width: 100%;
                 }
                 .leaderboard {
