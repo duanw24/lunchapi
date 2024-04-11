@@ -108,4 +108,9 @@ public class Utils {
         return array.asList().stream().map(Object::toString).map(n-> n.substring(1,n.length()-1)).collect(Collectors.joining("-"));
     }
 
+    public static String toppingJoiner(String[] string) {
+        return Arrays.stream(string).map(n->n.substring(1,n.length()-1)).collect(Collectors.joining("-"));
+    }
+
+
 }

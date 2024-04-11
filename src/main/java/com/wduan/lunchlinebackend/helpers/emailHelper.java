@@ -2,6 +2,7 @@ package com.wduan.lunchlinebackend.helpers;
 
 import com.wduan.lunchlinebackend.LogController;
 import com.wduan.lunchlinebackend.util.Order;
+import com.wduan.lunchlinebackend.util.Utils;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.Getter;
@@ -11,7 +12,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import java.util.Arrays;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -178,7 +181,7 @@ public class emailHelper {
                 "                <tr>\n" +
                 "                    <td align=\"center\" valign=\"top\" style=\"padding: 36px 24px;\">\n" +
                 "                        <a href=\"https://wduan.dev/lunch\" target=\"_blank\" style=\"display: inline-block;\">\n" +
-                "                            <img src=\"https://wduan.dev/lunch/images/BearBitesDeli_Colored.png\" alt=\""+"\" border=\"0\" width=\"200\" style=\"display: block; width: 200px; max-width: 200px; min-width: 200px;\">\n" +
+                "                            <img src=\"https://wduan.dev/images/BearBitesDeli_Colored.png\" alt=\""+"\" border=\"0\" width=\"200\" style=\"display: block; width: 200px; max-width: 200px; min-width: 200px;\">\n" +
                 "                        </a>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
@@ -232,7 +235,7 @@ public class emailHelper {
                 "                        <p style=\"margin: 0;\">Tap the button below to confirm your order. If you didn't place this order, you can safely delete this email.</p>\n" +
                 "                        <p></p>\n" +
                 "                        <p style=\"margin: 0;\">Order ID: "+order.getId()+"</p>\n" +
-                "                        <p style=\"margin: 0;\">Item: "+ order.getSubSize()+" inch "+(order.isToasted()?"toasted":"")+" sub"+"</p>\n" +
+                "                        <p style=\"margin: 0;\">Item: "+ order.getSubSize()+" inch "+ Utils.toppingJoiner(order.getProtein())+(order.isToasted()?" toasted":"")+" sub"+"</p>\n" +
                 "                        <p style=\"margin: 0;\">Price: $4.50</p>\n" +
                 "                    </td>\n" +
                 "                </tr>\n" +
@@ -460,8 +463,8 @@ public class emailHelper {
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                             <tr>
                                 <td align="center" valign="top" style="padding: 36px 24px;">
-                                    <a href="https://www.coke-sniffer.github.io/" target="_blank" style="display: inline-block;">
-                                        <img src="https://coke-sniffer.github.io/images/BearBitesDeli_Colored.png" alt="Logo" border="0" width="200" style="display: block; width: 200px; max-width: 200px; min-width: 200px;">
+                                    <a href="https://wduan.dev/lunch" target="_blank" style="display: inline-block;">
+                                        <img src="https://wduan.dev/images/BearBitesDeli_Colored.png" alt="Logo" border="0" width="200" style="display: block; width: 200px; max-width: 200px; min-width: 200px;">
                                     </a>
                                 </td>
                             </tr>
