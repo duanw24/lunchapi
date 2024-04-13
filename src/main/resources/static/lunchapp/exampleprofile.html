@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warren Duan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <style>
+        .body {
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            background-color: #6C757D;
+            color: #E9ECEF;
+            overflow: hidden;
+        }
+        .profile-container {
+            display: grid;
+            grid-template-columns: 49% 2% 49%;
+            height: 94vh;
+            width: 100vw;
+        }
+
+        .name-container {
+            border-radius: 40px;
+            background-color: #343A40;
+            height: 200px;
+            width: 100%;
+            margin:10px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: center;
+        }
+
+
+        .pfp-cover {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-left: 10%;
+            margin-right: 25px;
+            object-fit: cover;
+            object-position: center right;
+        }
+
+        .bottomleft-grid {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            width: 100%;
+        }
+
+        .leaderboard {
+            border-radius: 30px;
+            background-color: #343A40;
+            height: 400px;
+            width: 95%;
+            margin:10px;
+        }
+
+        .leaderboard-entry {
+            margin-top: -10px;
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+            horiz-align: center;
+            font-size: 1.35em;
+            font-weight: bold;
+        }
+
+        .badges {
+            display: table-row;
+            border-radius: 30px;
+            background-color: #343A40;
+            height: 400px;
+            width: 100%;
+            margin: 10px;
+        }
+
+        .badge {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right {
+            justify-content: left;
+            vertical-align: top;
+            margin: 10px;
+        }
+
+
+        .mastery-tag {
+            width: 200%;
+            margin-left: 5%;
+            font-size: 1.25em;
+            color: #DEE2E6;
+            margin-bottom: -10%;
+        }
+
+        .mastery-container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            justify-content: center;
+            width: 100%;
+            background-color: #343A40;
+            border-radius: 30px;
+        }
+
+
+
+        .mastery-item {
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .progress-none {
+            margin: 0 0 0 5%;
+            width: 92%;
+            height: 29%;
+            border-radius: 35px;
+            background-color: #6C757D;
+            font-weight: normal;
+        }
+
+        .progress {
+            margin: 0 0 0 5%;
+            width: 92%;
+            height: 29%;
+            border-radius: 35px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .progress-gold {
+            margin: 0 0 0 5%;
+            width: 92%;
+            height: 29%;
+            border-radius: 35px;
+            background-color: #B89438;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .goldtext {
+            color: #B89438;
+        }
+
+        .greentext {
+            color: #68A45D;
+        }
+
+        .sub-score {
+            border-radius: 30px;
+            background-color: #343A40;
+            height: 100%;
+            width: 167%;
+            margin: 10px;
+        }
+
+        .bigtext {
+            color:#B89438;
+            font-size: 3.5em;
+            font-weight: bold;
+        }
+
+        .recent-order-container {
+            display: grid;
+            grid-template-columns: 31% 32% 31%;
+            grid-column-gap: 10px;
+            border-radius: 30px;
+            background-color: #343A40;
+            height: 44%;
+            width: 100%;
+            margin-top: 2%;
+        }
+
+        /* ok code quality is dropping... 1:21am */
+        .recent {
+            margin-top: 8%;
+            margin-left: 10%;
+            width: 200%;
+            color: #DEE2E6;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .order {
+            margin-top: -10%;
+            margin-bottom: 15%;
+            background-color: #495057;
+            border-radius: 15px;
+            color: #DEE2E6;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body class="body">
+<div class="profile-container">
+    <div id="left">
+        <div class="name-container">
+            <img class="pfp-cover" src="https://api.wduan.dev/emotiguy/3d_cool.jpg" alt="epic">
+            <div>
+                <p style="margin-top: 50px; margin-bottom: 0">Warren Duan</p>
+                <p style="font-weight: 300;font-size: 0.5em">Senior</p>
+            </div>
+        </div>
+
+        <div class="bottomleft-grid">
+            <div class="leaderboard">
+                <div class="leaderboard-entry" style="margin-top: 5px">
+                    <p style="margin-left: 15%">Calories</p>
+                    <p style="color:#B89438; text-align: right; margin-right: 20%">9740</p>
+                    <p style="color:#B89438; text-align: right; margin-right: 20%">#1</p>
+                </div>
+                <div class="leaderboard-entry">
+                    <p style="margin-left: 15%">Wheat</p>
+                    <p style="color:#B89438;text-align: right; margin-right: 20%">24</p>
+                    <p style="color:#B89438;text-align: right; margin-right: 20%">#1</p>
+                </div>
+                <div class="leaderboard-entry">
+                    <p style="margin-left: 15%">Lettuce</p>
+                    <p style="color:#CC5500;text-align: right; margin-right: 20%">18</p>
+                    <p style="color:#CC5500;text-align: right; margin-right: 20%">#4</p>
+                </div>
+                <div class="leaderboard-entry">
+                    <p style="margin-left: 15%">White</p>
+                    <p style="color:#68A45D;text-align: right; margin-right: 20%">9</p>
+                    <p style="color:#68A45D;text-align: right; margin-right: 20%">#15</p>
+                </div>
+                <div class="leaderboard-entry">
+                    <p style="margin-left: 15%">Ham</p>
+                    <p style="color:#68A45D;text-align: right; margin-right: 20%">13</p>
+                    <p style="color:#68A45D;text-align: right; margin-right: 20%">#24</p>
+                </div>
+
+                <div style="position: absolute; bottom: 26%; left: 13%">
+                    <p style="color:#ADB5BD;font-size: 1em; font-weight: 500; margin-top: 10px">Last updated: 4.13.2024</p>
+                </div>
+            </div>
+
+            <div class="badges">
+                <p style="font-size: 1.5em; font-weight: bold; margin-left: 10%">Badges</p>
+                <div class="badge-item">
+                    <img class="badge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7swLwm1y-wCU09-B1BOSibSp4NxdKvKm2qgpENH8l6A&s">
+                    <p style="margin-top:-5%;text-align: center; font-size: 1.2em; font-weight: normal">Unreal Rank</p>
+                </div>
+                <div class="badge-item">
+                    <img class="badge" src="https://i.kym-cdn.com/photos/images/newsfeed/002/322/167/b9f.gif">
+                    <p style="margin-top:-1%;text-align: center; font-size: 1.2em; font-weight: normal">Beta Tester</p>
+                </div>
+
+            </div>
+
+            <div class="sub-score">
+                <p style="font-size: 1.5em; font-weight: bold; margin-left:5%;margin-bottom: 2%">UA Sub-Score</p>
+                <p style="text-align: center;margin:-10px;">
+                    <span class="bigtext">14610.43</span>
+                    <span>(top 98.5%)</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div></div>
+
+    <div class="right">
+        <div class="mastery-container">
+            <div class="mastery-tag">
+                <p style="font-size: 2em; font-weight: bold; margin-left: 2%; margin-top: 2%">Sandwich Mastery</p>
+            </div>
+            <div></div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">Wheat <span class="goldtext">50</span></p>
+                <p class="progress" style="background-color: #B89438">184 XP</p>
+            </div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">Ham <span class="greentext">24</span></p>
+                <p class="progress" style="background-color: #68A45D">23/35 XP</p>
+            </div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">Lettuce <span class="goldtext">50</span></p>
+                <p class="progress" style="background-color: #B89438">55 XP</p>
+            </div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">Hummus <span class="goldtext"></span></p>
+                <p class="progress-none">Not Unlocked!</p>
+            </div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">White <span class="greentext">17</span></p>
+                <p class="progress" style="background-color: #68A45D">12/15 XP</p>
+            </div>
+
+            <div class="mastery-item">
+                <p style="margin-bottom:2%;font-size: 1.2em; font-weight: bold;">Salad <span class="goldtext"></span></p>
+                <p class="progress-none">Not Unlocked!</p>
+            </div>
+
+            <div>
+                <p style="width:200%;text-align:center; color:#ADB5BD;font-size: 1em; font-weight: 500; margin-top: 10px">Average Mastery (Weighted): 34.5</p>
+                <p style="width:200%;text-align:center; color:#ADB5BD;font-size: 1em; font-weight: 500; margin-top: -10px">Unweighted: 4.3</p>
+            </div>
+        </div>
+
+        <div class="recent-order-container">
+            <p class="recent">Recent Orders</p>
+            <div></div>
+            <div></div>
+
+            <div class="order" style="margin-left: 10%">
+                <p style="margin-left:10%;font-weight: 400;font-size: large">12" &nbsp&nbsp 4.11.2024<br><br>Ham<br>Pepperoni<br>Cheddar<br><br>UA Sauce<br>Mayo</p>
+            </div>
+
+            <div class="order" style="margin-left: 10%">
+                <p style="margin-left:10%;font-weight: 400;font-size: large">12" &nbsp&nbsp 4.11.2024<br><br>Turkey<br>Bacon<br>PepperJack<br><br>Italian</p>
+            </div>
+
+            <div class="order" style="margin-left: 10%">
+                <p style="margin-left:10%;font-weight: 400;font-size: large">12" &nbsp&nbsp 4.10.2024<br><br>Turkey<br>Bacon<br>Ham<br><br>Italian<br>Mayo</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<footer style="background-color:#6C757D;color:#212529;text-align: center; font-size:large; font-weight:600; padding:0">
+    <a href="https://wduan.dev">wduan.dev</a><br>2024
+</footer>
+</body>
+</html>
